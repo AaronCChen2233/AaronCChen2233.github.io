@@ -5,8 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <h1 id="output"></h1>
+
+    <script>
+        var n = parseInt(prompt("Tell me a N number (N must be positive integer)"));
+        var total = 1;
+        var outputmessage="";
+
+        //here for check format
+        while(n < 0 || isNaN(n)){
+            n = parseInt(prompt("Tell me a N number (N must be positive integer)"));
+        }
+
+        //Calculat here
+        for(number = n;number>0;number--){
+            total *= number;
+        }
+
+        outputmessage = "Factorial of "+n+" is " + total; 
+        document.getElementById("output").innerHTML = outputmessage;
+
+    </script>
 </body>
 </html>
