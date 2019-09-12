@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #resultkg{
+        padding-bottom: 30px;
+    }
+    </style>
+</head>
+<body>
+    <dl>
+    <dt>Convert kg to pond</dt>
+    <dd><input type="number" id="kg" value="" oninput="weightConverterK()"></dd>
+
+    <dt>Result:kg</dt>
+    <dd id="resultkg">pond</dd>
+   
+    <dt>Convert pond to kg</dt>
+    <dd><input type="number" id="ponds" value="" oninput="weightConverterP()"></dd>
+    
+    
+    <dt>Result:ponds</dt>
+    <dd id="resultpond">kg</dd>
+    
+    </dl>
+
+    <script>
+        // weightconverterk kg to pond
+         function weightConverterK(){
+             var kg = document.getElementById("kg").value;
+        // make kg change words to number.
+             var kg = parseInt(kg);
+        
+            var resultkg = kg * 2.2;
+        
+            document.getElementById("resultkg").innerHTML = resultkg
+        
+            }
+        // weightconverterP pond to kg
+            function weightConverterP(){
+             var pond = document.getElementById("ponds").value;
+        // make pond change words to number
+             var pond = parseInt(pond);
+        
+            var resultpond = pond / 2.2;
+        
+            document.getElementById("resultpond").innerHTML = resultpond;
+        }
+        
+        </script>
+</body>
+
+
+</html>

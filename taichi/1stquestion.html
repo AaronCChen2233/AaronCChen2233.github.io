@@ -1,0 +1,58 @@
+<div class="form">
+    <form name="qform" id="qform">
+        <dl>
+            <dt>1st number</dt>
+            <dd><input type="number" name="first" id="first"></dd>
+            <dt>2nd number</dt>
+            <dd><input type="number" name="second" id="second"></dd>
+  
+            <input type="button" value="multiply" onclick="multiply();">
+            <input type="button" value="devide" onclick="devide();">
+        </dl>
+  
+        <div id="result"></div>
+
+        <script>
+
+            function multiply(){
+                var first = document.qform.first.value;
+                var second = document.qform.second.value;
+    
+                var first = (parseInt(first));
+                var second = (parseInt(second));
+    
+                var result= first * second;
+    
+    
+        var html = "<dl>";
+            html += "<dt>" + "result" + "</dt>";
+            html += "<dd>" + result + "</dd>";
+            html += "</dl>" ;
+    
+        document.getElementById("result").innerHTML = html ;
+    }  
+    
+    function devide(){
+                var first = document.qform.first.value;
+                var second = document.qform.second.value;
+    
+                var first = (parseInt(first));
+                var second = (parseInt(second));
+    
+                var result= first / second
+    
+    
+        var html = "<dl>";
+            html += "<dt>" + "result" + "</dt>";
+            html += "<dd>" + result + "</dd>";
+            html += "</dl>" ;
+    
+        document.getElementById("result").innerHTML = html ;
+    }  
+    
+     
+    
+          </script>
+    
+    </form>
+      </div>

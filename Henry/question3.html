@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Question 3</title>
+    <style>
+        button {
+            background-color: navy;
+            color: white;
+            display: block;
+            margin: 0 auto;
+            border-radius: 5px
+        }
+
+        button:hover{
+            background-color: cornflowerblue;
+        }
+
+        h1, h2, p {
+            text-align: center
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Question 3</h1>
+
+    <h2>Reverse and Sort Methods</h2>
+
+    <button id="button">Sort Twice</button>
+
+    <p id="fruitsContainer"></p>
+
+    <script>
+        var button = document.getElementById('button');
+        var fruitsContainer = document.getElementById('fruitsContainer');
+
+        var fruits = ["Durian", "Figs", "Blackberries", "Elderberries", "Apricots", "Cherries", "Grapefruits"];
+
+        var counter = 0;
+
+        if(counter === 0){
+            button.onclick = ()=>{
+                fruits.reverse();
+                fruitsContainer.innerHTML = fruits;
+                counter++;
+            }
+        } else{
+            button.onclick = ()=>{
+                fruits.sort();
+                fruitsContainer.innerHTML = fruits;
+                counter = 0;
+            }
+        }
+    </script>
+    
+</body>
+</html>

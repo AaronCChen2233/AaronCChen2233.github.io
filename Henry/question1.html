@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Question 1</title>
+
+    <style>
+        div{
+            background-color: darkblue;
+            color: aliceblue;
+            text-align: center;
+            width: 300px;
+            padding: 10px;
+            margin: 0 auto;
+            border-radius: 5px;
+            height: 155px;
+        }
+
+        h1, h2, h3 {
+            text-align: center
+        }
+
+        button{
+            margin: 2px;
+            border-radius: 5px
+        }
+
+        input{
+            text-align: center;
+            border-radius: 5px
+        }
+
+        button:hover {
+            background-color: black;
+            color: white
+        }
+
+        input:hover, input:active{
+            background-color: lightblue
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Question 1</h1>
+    <h2>Calculator</h2>
+
+    <div>
+        <p><label for="firstNumber">1st Number: <input id="firstNumber" type="number"></label></p>
+        <p><label for="secondNumber">2nd Number: <input id="secondNumber" type="number"></label></p>
+        <p><button onclick="multiply()">Multiply</button><button onclick="divide()">Divide</button></p>
+        <h3 id="answer"></h3>
+    </div>
+
+    <script>
+        var firstNumber = document.getElementById('firstNumber');
+        var secondNumber = document.getElementById('secondNumber');
+        var answer = document.getElementById('answer');
+
+        function multiply(){
+            var result = firstNumber.value * secondNumber.value;
+            answer.innerHTML = result;
+        }
+
+        function divide(){
+            //if(secondNumber.value === 0) answer.innerHTML = "The number must be greater than 2";
+            var result = firstNumber.value / secondNumber.value;
+            answer.innerHTML = result;
+        }
+    </script>
+
+    
+    
+</body>
+</html>
