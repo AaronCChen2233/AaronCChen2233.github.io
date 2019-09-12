@@ -19,7 +19,7 @@
 </style>
 <body>
         <div id="box">
-                <h1>Fruits Sort</h1>
+            <h1>Fruits Sort</h1>
             <div>Insert fruits use "," to split EX:Durian,Figs,Blackberries,Elderberries,Apricots,Cherry,Grapefruit</div>
             <textarea type="text" id="fruits" cols="40" rows="5" ></textarea>
             <br>
@@ -39,7 +39,7 @@
 
             function fruitsReverse(){
                 var fruitsarray = document.getElementById("fruits").value.split(",");
-                fruitsarray = fruitsarray.reverse();
+                fruitsarray = fruitsarray.sort().reverse();
                 document.getElementById("output").innerHTML = fruitsarray;
             }
         
