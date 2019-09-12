@@ -9,18 +9,25 @@
 </head>
 <style>
     textarea{
-        width: 500px;
+        width: 400px;
+        background-color:  rgb(213, 235, 255);
+    }
+    #box{
+        width: 600px;
+        height: 280px;
     }
 </style>
 <body>
-        <div>Insert fruits use "," to split EX:Durian,Figs,Blackberries,Elderberries,Apricots,Cherry,Grapefruit</div>
-        <textarea type="text" id="fruits" cols="40" rows="5" ></textarea>
-        <br>
-        <button onclick="fruitsSort()"> Sort </button>
-        <button onclick="fruitsReverse()"> Reverse </button>
+        <div id="box">
+                <h1>Fruits Sort</h1>
+            <div>Insert fruits use "," to split EX:Durian,Figs,Blackberries,Elderberries,Apricots,Cherry,Grapefruit</div>
+            <textarea type="text" id="fruits" cols="40" rows="5" ></textarea>
+            <br>
+            <button onclick="fruitsSort()"> Sort </button>
+            <button onclick="fruitsReverse()"> Reverse </button>
 
-        <div id="output"></div>
-
+            <div id="output"></div>
+        </div>
         <script>
 
             function fruitsSort(){

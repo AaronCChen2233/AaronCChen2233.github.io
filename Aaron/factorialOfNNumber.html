@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1 id="output"></h1>
-
+    <div id="box">
+        <h1>Factorial of N number</h1>
+        <h1 id="output"></h1>
+    </div>
     <script>
         var n = parseInt(prompt("Tell me a N number (N must be positive integer)"));
         var total = 1;
@@ -22,6 +24,7 @@
 
         //Calculat here
         for(number = n;number>0;number--){
+            console.log(number);
             total *= number;
         }
 
