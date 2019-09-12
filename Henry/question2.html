@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Question 2</title>
+
+    <style>
+        div{
+            background-color: #109e68;
+            color: whitesmoke;
+            text-align: center;
+            width: 300px;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 0 auto
+        }
+
+        h1, h2, h3 {
+            text-align: center
+        }
+
+        input{
+            text-align: center;
+            border-radius: 5px
+        }
+
+        input:hover, input:active{
+            background-color: lightblue
+        }
+    </style>
+</head>
+<body>
+        <h1>Question 2</h1>
+
+        <h2>Conversions</h2>
+
+        <div>
+            <p><label for="pounds">Pounds: <input id="pounds" type="number"></label></p>
+            
+            <p><label for="kilograms"> Kilograms <input id="kilograms" type="number"></label></p>
+
+            <h3>Kilograms: <span id="answerKg"></span></h3>
+            <h3>Pounds: <span id="answerLb"></span></h3>
+
+        </div>
+
+        <script>
+            var pounds = document.getElementById('pounds');
+            var kilograms = document.getElementById('kilograms');
+            var answerKg = document.getElementById('answerKg');
+            var answerLb = document.getElementById('answerLb');
+
+            pounds.onchange = convertToKilograms;
+            kilograms.onkeyup = convertToPounds;
+
+            function convertToKilograms(){
+                var result = pounds.value * 0.453592;
+                answerKg.innerHTML = result.toFixed(2);
+    
+            }
+    
+            function convertToPounds(){
+                var result = kilograms.value * 2.20462;
+                answerLb.innerHTML = result.toFixed(2);
+    
+            }
+        </script>
+    
+</body>
+</html>

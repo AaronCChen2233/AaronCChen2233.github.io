@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Question 4</title>
+    <style>
+        p{
+            background-color: dimgrey;
+            color: white;
+            width: 100px;
+            text-align: center;
+            margin: 0 auto;
+            border-radius: 5px;
+        }
+
+        h1, h2 {
+            text-align: center
+        }
+
+        button{
+            background-color: darkgrey;
+            color: white;
+            display: block;
+            margin: 0 auto
+        }
+
+        button:hover{
+            background-color: darkblue;
+        }
+
+        div{
+            margin-bottom: 10px
+        }
+
+    </style>
+</head>
+<body>
+
+        <h1>Question 4</h1>
+
+        <h2>Generate Table</h2>
+
+        <div>
+
+            <button id="button">Generate Table</button>
+
+        </div>
+
+        <p id="output"></p>
+
+        <script>
+
+            var button = document.getElementById('button');
+
+            var output = document.getElementById('output');
+
+            var number = [1, 2, 3, 4, 5, 6];
+
+            var table = "";
+
+            console.log(number);
+
+            button.onclick = ()=>{
+                table = "";
+                for(i = 0; i < number.length; i++){
+                    table += "<b>" + number[i] + "</b>" + "<b> x 10 = </b>" + "<b>" + number[i]*10 + "</b>" + "</br>";                
+            }
+            output.innerHTML = table;
+            }
+            
+            
+        
+        </script>
+    
+</body>
+</html>
