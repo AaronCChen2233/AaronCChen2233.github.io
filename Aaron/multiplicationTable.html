@@ -20,20 +20,21 @@
     <br>
     <script>
        function showMultiplicationtable(){
-
-        document.body = document.createElement("BODY");
+           
             for(i = 1;i<=9;i++){
                 var group =document.createElement("DIV");
-                group.id=i;
+                
+                //box style
                 group.style.cssText =
                 "float:left; margin-right: 20px; background-color: rgb(157, 204, 248); border: 1px solid rgb(0, 56, 109); text-align: center; border-radius: 5px; padding: 5px;";
-                document.body.appendChild(group);
-    
+                
                 for(j = 1;j<=9;j++){
                     var div = document.createElement("DIV");
                     div.innerHTML = i + " x " + j + " = " + i*j;
-                    document.getElementById(i).appendChild(div);
+                    group.appendChild(div);
                 }
+
+                document.body.appendChild(group);
             }
        }
       

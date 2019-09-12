@@ -25,24 +25,35 @@
             <br>
             <button onclick="fruitsSort()"> Sort </button>
             <button onclick="fruitsReverse()"> Reverse </button>
-
+            <button onclick="fruitSortChange()"> Reverse/Sort </button>
             <div id="output"></div>
         </div>
         <script>
+            var isSorted = false;
 
             function fruitsSort(){
                 var fruitsarray = document.getElementById("fruits").value.split(",");
                 fruitsarray = fruitsarray.sort();
                 document.getElementById("output").innerHTML = fruitsarray;
-                
+                isSorted = true;
             }
 
             function fruitsReverse(){
                 var fruitsarray = document.getElementById("fruits").value.split(",");
                 fruitsarray = fruitsarray.sort().reverse();
                 document.getElementById("output").innerHTML = fruitsarray;
+                isSorted = false;
             }
-        
+
+            function fruitSortChange(){
+                if(isSorted){
+                    fruitsReverse();
+                }
+                else{
+                    fruitsSort();
+                }
+            }
+            
         </script>
 </body>
 </html>
