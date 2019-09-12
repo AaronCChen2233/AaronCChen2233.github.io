@@ -6,7 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+<style>
+    div{
+        font-size: 20px;
+        font-family:Microsoft JhengHei;
+        
+    }
+</style>
+
 <body>
+    <button id="showbutton" onclick="showMultiplicationtable()">Show Multiplication Table</button>
+    <br>
+    <br>
+    <script>
+       function showMultiplicationtable(){
+
+        document.body = document.createElement("BODY");
+            for(i = 1;i<=9;i++){
+                var group =document.createElement("DIV");
+                group.id=i;
+                group.style.cssText ="float:left; margin-right: 35px;";
+                document.body.appendChild(group);
     
+                for(j = 1;j<=9;j++){
+                    var div = document.createElement("DIV");
+                    div.innerHTML = i + " x " + j + " = " + i*j;
+                    document.getElementById(i).appendChild(div);
+                }
+            }
+       }
+      
+    </script>
 </body>
 </html>
