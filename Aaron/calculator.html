@@ -19,7 +19,7 @@
 <body>
     <h1>Calculator</h1>
     <div id="fristnumber">1st Number: </div> 
-    <input type="number" name="numbertext" id="number">
+    <input type="text" name="numbertext" id="number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
     <br>
     <br>
     <div id="secondnumber">2st Number: </div>
