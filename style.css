@@ -22,8 +22,8 @@ div{
     width: 500px;
     background-color: rgb(157, 204, 248);
     border: 1px solid rgb(0, 56, 109);
-    text-align: center;
+    /* text-align: center; */
     border-radius: 5px;
-    margin: 0 auto;
-    padding: 5px;
+    /* margin: 0 auto; */
+    padding: 10px;
 }

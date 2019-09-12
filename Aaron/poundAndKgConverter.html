@@ -10,45 +10,57 @@
 <style>
     #pounds{
         float:left;
+        margin-left: 30px;
     }
 
     #kilograms{
         float:left;
+        margin-left: 12px;
+    }
+    #box{
+        height: 180px;
     }
 </style>
 <body>
-    <div id = "pounds">Pounds:</div> <input oninput="corverFromPounds(this.value)" type="text">
-    <input onchange="corverFromPounds(this.value)" type="number"><br>
+    <div id="box">
+        <div id = "pounds">Pounds:</div> <input oninput="corverFromPounds(this)" type="text">
+        <input onchange="corverFromPounds(this)" type="number"><br>
 
-    <div id = "kilograms">Kilograms:</div> <input oninput="corverFromkilograms(this.value)" type="text">
-    <input onchange="corverFromkilograms(this.value)" type="number"><br>
-
-    <div id="poundsoutput">Pounds: </div>
-    <div id="kilogramsoutput">Kilograms: </div>
-
-    <button onclick="cleartext()">Clear</button>
-
+        <div id = "kilograms">Kilograms:</div> <input oninput="corverFromkilograms(this)" type="text">
+        <input onchange="corverFromkilograms(this)" type="number"><br>
+        <br>
+        <div id="poundsoutput">Pounds: </div>
+        <div id="kilogramsoutput">Kilograms: </div>
+        <br>
+        <button onclick="cleartext()">Clear</button>
+    </div>
     <script>
         function corverFromPounds(pounds){
-            document.getElementById("poundsoutput").innerHTML = "Pounds: "+ pounds;
-            document.getElementById("kilogramsoutput").innerHTML = "Kilograms: "+ pounds/2.2;
+            checkformat(pounds);
+            document.getElementById("poundsoutput").innerHTML = "Pounds: "+ pounds.value;
+            document.getElementById("kilogramsoutput").innerHTML = "Kilograms: "+ pounds.value/2.2;
         }
 
         function corverFromkilograms(kilograms){
-            document.getElementById("poundsoutput").innerHTML = "Pounds: "+ kilograms*2.2;
-            document.getElementById("kilogramsoutput").innerHTML = "Kilograms: "+ kilograms;
+            checkformat(kilograms);
+            document.getElementById("poundsoutput").innerHTML = "Pounds: "+ kilograms.value*2.2;
+            document.getElementById("kilogramsoutput").innerHTML = "Kilograms: "+ kilograms.value;
         }
 
         function cleartext()
         {
             var inputs = document.getElementsByTagName("input");
-            debugger;
             for(var inp in inputs){
                 inputs[inp].value="";
             }
 
             document.getElementById("poundsoutput").innerHTML = "Pounds: ";
             document.getElementById("kilogramsoutput").innerHTML = "Kilograms: ";
+        }
+
+        //here for check format
+        function checkformat(element){
+            element.value = element.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
         }
     
     </script>
