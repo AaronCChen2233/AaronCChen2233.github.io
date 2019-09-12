@@ -7,7 +7,7 @@
     <title>Question 1</title>
 
     <style>
-        div{
+        .container{
             background-color: darkblue;
             color: aliceblue;
             text-align: center;
@@ -40,6 +40,31 @@
         input:hover, input:active{
             background-color: lightblue
         }
+
+        a{
+            text-decoration: none;
+            display: inline-block;
+            background-color: blue;
+            color: white;
+            border: 1px solid black;
+            border-radius: 3px;
+            padding: 5px;
+        }
+
+        a:hover{
+            background-color: darkgreen
+        }
+
+        .home{
+            display: block;
+            margin: 0 auto;
+            width: 50px;
+            text-align: center
+        }
+
+        .index {
+            margin-top: 10px
+        }
     </style>
 </head>
 <body>
@@ -47,12 +72,19 @@
     <h1>Question 1</h1>
     <h2>Calculator</h2>
 
-    <div>
+    <div class="container">
         <p><label for="firstNumber">1st Number: <input id="firstNumber" type="number"></label></p>
         <p><label for="secondNumber">2nd Number: <input id="secondNumber" type="number"></label></p>
         <p><button onclick="multiply()">Multiply</button><button onclick="divide()">Divide</button></p>
         <h3 id="answer"></h3>
     </div>
+
+    <div class="index">
+
+        <a class="home" href="index.html">Home</a>
+
+    </div>
+
 
     <script>
         var firstNumber = document.getElementById('firstNumber');
@@ -70,6 +102,7 @@
             answer.innerHTML = result;
         }
     </script>
+
 
     
     

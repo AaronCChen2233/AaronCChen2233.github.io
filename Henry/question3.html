@@ -21,6 +21,31 @@
         h1, h2, p {
             text-align: center
         }
+
+        a{
+            text-decoration: none;
+            display: inline-block;
+            background-color: blue;
+            color: white;
+            border: 1px solid black;
+            border-radius: 3px;
+            padding: 5px;
+        }
+
+        a:hover{
+            background-color: darkgreen
+        }
+
+        .home{
+            display: block;
+            margin: 0 auto;
+            width: 50px;
+            text-align: center
+        }
+
+        .index {
+            margin-top: 10px
+        }
     </style>
 </head>
 <body>
@@ -32,6 +57,12 @@
     <button id="button">Sort Twice</button>
 
     <p id="fruitsContainer"></p>
+
+    <div class="index">
+
+            <a class="home" href="index.html">Home</a>
+    
+    </div>
 
     <script>
         var button = document.getElementById('button');

@@ -7,7 +7,7 @@
     <title>Question 2</title>
 
     <style>
-        div{
+        .container{
             background-color: #109e68;
             color: whitesmoke;
             text-align: center;
@@ -29,6 +29,31 @@
         input:hover, input:active{
             background-color: lightblue
         }
+
+        a{
+            text-decoration: none;
+            display: inline-block;
+            background-color: blue;
+            color: white;
+            border: 1px solid black;
+            border-radius: 3px;
+            padding: 5px;
+        }
+
+        a:hover{
+            background-color: darkgreen
+        }
+
+        .home{
+            display: block;
+            margin: 0 auto;
+            width: 50px;
+            text-align: center
+        }
+
+        .index {
+            margin-top: 10px
+        }
     </style>
 </head>
 <body>
@@ -36,7 +61,7 @@
 
         <h2>Conversions</h2>
 
-        <div>
+        <div class="container"> 
             <p><label for="pounds">Pounds: <input id="pounds" type="number"></label></p>
             
             <p><label for="kilograms"> Kilograms <input id="kilograms" type="number"></label></p>
@@ -45,6 +70,12 @@
             <h3>Pounds: <span id="answerLb"></span></h3>
 
         </div>
+
+        <div class="index">
+
+                <a class="home" href="index.html">Home</a>
+        
+            </div>
 
         <script>
             var pounds = document.getElementById('pounds');
