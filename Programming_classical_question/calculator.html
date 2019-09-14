@@ -42,22 +42,37 @@
         <input type="text" name="numbertext" id="number2" oninput="checkformat(this)">
         <br>
         <br>
-        <button type="button" onclick="multiply()">Multiply</button>  <button type="button" onclick="divide()">Divide</button>
+        <button type="button" onclick="multiply()">Multiply</button> 
+        <button type="button" onclick="divide()">Divide</button>
+        <button type="button" onclick="plus()">Plus</button> 
+        <button type="button" onclick="minus()">Minus</button>
         <div>The Result is: </div>
         <h1 id="output"></h1> 
     </div>
     <script>
 
         function multiply(){
-            var n = document.getElementById("number").value;
-            var n2 = document.getElementById("number2").value;
+            var n = parseFloat(document.getElementById("number").value);
+            var n2 = parseFloat(document.getElementById("number2").value);
             document.getElementById("output").innerHTML = n*n2;
         }
 
         function divide(){
-            var n = document.getElementById("number").value;
-            var n2 = document.getElementById("number2").value;
+            var n = parseFloat(document.getElementById("number").value);
+            var n2 = parseFloat(document.getElementById("number2").value);
             document.getElementById("output").innerHTML = n/n2;
+        }
+
+        function plus(){
+            var n = parseFloat(document.getElementById("number").value);
+            var n2 = parseFloat(document.getElementById("number2").value);
+            document.getElementById("output").innerHTML = n+n2;
+        }
+
+        function minus(){
+            var n = parseFloat(document.getElementById("number").value);
+            var n2 = parseFloat(document.getElementById("number2").value);
+            document.getElementById("output").innerHTML = n-n2;
         }
 
          //here for check format

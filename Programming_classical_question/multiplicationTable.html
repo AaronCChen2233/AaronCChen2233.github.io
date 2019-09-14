@@ -15,11 +15,14 @@
 </style>
 
 <body>
-    <button id="showbutton" onclick="showMultiplicationtable()">Show Multiplication Table</button>
+    <div id="box">
+        <h1>Multiplication Table</h1>
+        <!-- <button id="showbutton" onclick="showMultiplicationtable()">Show Multiplication Table</button> -->
+    </div>
     <br>
     <br>
     <script>
-       function showMultiplicationtable(){
+    //    function showMultiplicationtable(){
            
             for(i = 1;i<=9;i++){
                 var group =document.createElement("DIV");
@@ -36,7 +39,7 @@
 
                 document.body.appendChild(group);
             }
-       }
+    //    }
       
     </script>
 </body>
