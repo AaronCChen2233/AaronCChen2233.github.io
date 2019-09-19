@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="../style.css">
+    <title>How long have you lived</title>
 </head>
 <body>
-        <h1>How long you lived?</h1>
+        <h1>How long have you lived?</h1>
         <div>Tell me your birthday</div>
         <div>Year: </div> <input type="text" id ="birthdayYear">
         <div>Month: </div> <input type="text" id="birthdayMonth">
         <div>Date: </div> <input type="text" id="birthdayDate">
         <button onclick="showdays()">Show me</button>
         <h1 id="output"></h1>
-        <img src="Flowcharts/How_many_years_you_lived.png">
+        <img src="Flowcharts/How long have you lived flowcharts.png">
     <script>
         function showdays(){
             //start
@@ -29,21 +28,21 @@
             var totalDay = 0;
 
             var monthOfyear = 12;
-            // Flowcharts initial on the beginning but Program initial in for loop
-            // var y = birthdayYear;
-            // var m = birthdayMonth;
+            var y = birthdayYear;
+            var m = birthdayMonth;
             var Today = new Date();
             
             var toDayYear = Today.getFullYear();
             var toDayMonth = Today.getMonth();
             var toDayDate = Today.getDate();
             var toDayWeekday = Today.getDay();
-
+            
             //decision
-            for(y = birthdayYear; y <= toDayYear; y++){
+            for(; y <= toDayYear; y++){
 
                 //decision
                 if(y == toDayYear){
+                    // if y is toDayYear so only calculate until today's month
                     // less a month because that month haven't finish
                     // javascript "Date.getMonth()" function already less a month
                     //process
@@ -51,7 +50,7 @@
                 }
 
                 //decision
-                for(m = birthdayMonth; m <= monthOfyear; m++){
+                for(; m <= monthOfyear; m++){
 
                     //decision
                     switch (m){
@@ -113,10 +112,11 @@
 
             //process
             totalDay += toDayDate;
-            //totalDay minus your birthdayDath because last part include your birthdayMonth's days
+            // totalDay minus your birthdayDath because last part include your birthdayMonth's days
             totalDay -= birthdayDate;
             birthdayWeekDay = (toDayWeekday + ( 7 - (totalDay%7)))%7;
 
+            // Weekday number convert to weekday string
             //decision
             switch (birthdayWeekDay){
                 case 0:
