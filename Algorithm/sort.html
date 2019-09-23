@@ -14,7 +14,8 @@
         <textarea type="text" id="numbers" cols="40" rows="5" ></textarea>
         <br>
         <button onclick="bubbleSort()">Bubble Sort </button>
-        <button onclick="mergeSort()"> Merge Sort </button>
+        <button onclick="mergeSort()">Merge Sort </button>
+        <button onclick="selectionSort()">Selection Sort </button>
         <!-- <button onclick="fruitSortChange()"> Reverse/Sort </button> -->
         <div id="output"></div>
     </div>
@@ -32,7 +33,10 @@
 
         function mergeSort(){
             var numbersarray = document.getElementById("numbers").value.split(",");
+        }
 
+        function selectionSort(){
+            var numbersarray = document.getElementById("numbers").value.split(",");
         }
 
     </script>
