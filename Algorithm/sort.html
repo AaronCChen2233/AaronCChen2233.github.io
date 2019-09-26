@@ -13,11 +13,11 @@
         <div>Insert numbers use "," to split EX:6,2,1,5,3,8,7,4</div>
         <textarea type="text" id="numbers" cols="40" rows="5" ></textarea>
         <br>
-        <!-- <button onclick="bubbleSort()">Bubble Sort </button>
-        <button onclick="mergeSort()">Merge Sort </button> -->
+
+        <button onclick="mergeSort()">Merge Sort </button>
         <button onclick="selectionSort()">Selection Sort </button>
         <button onclick="quickSort()">Quick Sort</button>
-        
+        <!-- <button onclick="bubbleSort()">Bubble Sort </button> -->
         <!-- <button onclick="fruitSortChange()"> Reverse/Sort </button> -->
         <div id="output"></div>
         <div id="swapcountoutput"></div>
@@ -25,8 +25,15 @@
     </div>
 
     <script>
+        // this is for test array
+        // 1,9,4,5,16,7,33,485,5,8,6,8,44,8,6,9,0,-7
+        // document.getElementById("numbers").value = "1,5,3,4,9,8";
+        // quickSort();
+        // selectionSort();
+        // mergeSort();
         var swapcount = 0;
         var bon=0;
+
         function bubbleSort(){
             var numbersarray = document.getElementById("numbers").value.split(",");
 
@@ -37,7 +44,50 @@
         }
 
         function mergeSort(){
-            var numbersarray = document.getElementById("numbers").value.split(",");
+
+            bon=0;
+            swapcount = 0;
+            // string conver to numbersArray
+            var numbersarray = document.getElementById("numbers").value.split(",").map(Number);
+            
+            document.getElementById("output").innerHTML ="This is merge sort result:<br>" + recursiveMergeSort(numbersarray);;
+            document.getElementById("swapcountoutput").innerHTML = "";
+            document.getElementById("comparecountoutput").innerHTML = "compare "+ bon +" times";
+
+        }
+
+        function recursiveMergeSort(arrary){
+            
+            // if arrary.length is 0 or 1 which mean they separate to every numbers are independent
+            if(arrary.length <= 1){
+                return arrary;
+            }
+
+            // separate
+            var arrary1 = arrary.splice((arrary.length)/2, arrary.length-1);
+
+            var separateArray1 = recursiveMergeSort(arrary);
+            var separateArray2 = recursiveMergeSort(arrary1);
+
+            var mergedArray = [];
+            while(separateArray1.length != 0 && separateArray2.length != 0){
+                
+                bon++;
+                if(separateArray1[0] < separateArray2[0]){
+                    mergedArray.push(separateArray1[0]);
+                    separateArray1.shift();
+                }
+                else{
+                    mergedArray.push(separateArray2[0]);
+                    separateArray2.shift();
+                }
+            }
+
+            //if it leave the while loop mean one of array was putted in mergedArray, the left part just put in after mergedArray 
+            bon++;
+            mergedArray = mergedArray.concat(separateArray1, separateArray2);
+
+            return mergedArray;
         }
 
         function selectionSort(){
@@ -45,10 +95,6 @@
             swapcount = 0;
             // string conver to numbersArray
             var numbersArray = document.getElementById("numbers").value.split(",").map(Number);
-            
-            // this is for test array
-            // var numbersArray =[1,9,4,5,16,7,33];
-            // 1,9,4,5,16,7,33,485,5,8,6,8,44,8,6,9,0,-7
 
             var theLeastNumber;
             var l = numbersArray.length;
@@ -88,10 +134,6 @@
             // string conver to numbersArray
             var numbersArray = document.getElementById("numbers").value.split(",").map(Number);
             
-            // this is for test array
-            // var numbersArray =[1,9,4,5,16,7,33,485,5,8,6,8,44,8,6,9,0,-7];
-            // 1,9,4,5,16,7,33,485,5,8,6,8,44,8,6,9,0,-7
-
             var l = numbersArray.length;
             var startPosition = 0;
             //Do quick Sort here
@@ -133,7 +175,7 @@
             }
 
             //if (pivot - o) bigger than 1 which mean the greater part haven't sort
-            if((pivot - o) >1){
+            if((pivot - o) > 1){
                 //so call this function again put same array but change the position start
                 recursiveQuickSort(array, o+1, pivot);
             }
