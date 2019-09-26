@@ -4,28 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Sort</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <div id="box">
         <h1>Sort</h1>
-        <div>Insert numbers use "," to split EX:9,5,6,3,2,4,7,4,2,5,2,8,5,5</div>
+        <div>Insert numbers use "," to split EX:6,2,1,5,3,8,7,4</div>
         <textarea type="text" id="numbers" cols="40" rows="5" ></textarea>
         <br>
-        <button onclick="bubbleSort()">Bubble Sort </button>
-        <button onclick="mergeSort()">Merge Sort </button>
+        <!-- <button onclick="bubbleSort()">Bubble Sort </button>
+        <button onclick="mergeSort()">Merge Sort </button> -->
         <button onclick="selectionSort()">Selection Sort </button>
+        <button onclick="quickSort()">Quick Sort</button>
+        
         <!-- <button onclick="fruitSortChange()"> Reverse/Sort </button> -->
         <div id="output"></div>
+        <div id="swapcountoutput"></div>
+        <div id="comparecountoutput"></div>
     </div>
 
     <script>
-
+        var swapcount = 0;
+        var bon=0;
         function bubbleSort(){
             var numbersarray = document.getElementById("numbers").value.split(",");
 
-            for(var i=0,l=numbersarray.length;i<=l;i++)
+            for(var i=0, l = numbersarray.length; i<=l; i++)
             {
 
             }
@@ -36,7 +41,119 @@
         }
 
         function selectionSort(){
-            var numbersarray = document.getElementById("numbers").value.split(",");
+            bon=0;
+            swapcount = 0;
+            // string conver to numbersArray
+            var numbersArray = document.getElementById("numbers").value.split(",").map(Number);
+            
+            // this is for test array
+            // var numbersArray =[1,9,4,5,16,7,33];
+            // 1,9,4,5,16,7,33,485,5,8,6,8,44,8,6,9,0,-7
+
+            var theLeastNumber;
+            var l = numbersArray.length;
+            
+            for(var i=0; i < l; i++)
+            {
+                theLeastNumber = numbersArray[i];
+
+                //o is the original position
+                var o = i;
+
+                //only compare number which are left, so "j=i+1"
+                for(var j = i+1; j<l; j++)
+                {
+                    bon++;
+                    //here will find the least number
+                    if(numbersArray[j] < theLeastNumber){
+                        theLeastNumber = numbersArray[j];
+
+                        //keep the least number position
+                        o = j;
+                    }
+                }
+                if(o!=i){
+                    swap(numbersArray, o, i);
+                }
+            }
+
+            document.getElementById("output").innerHTML ="This is selection sort result:<br>" + numbersArray;
+            document.getElementById("swapcountoutput").innerHTML = "swap "+ swapcount +" times";
+            document.getElementById("comparecountoutput").innerHTML = "compare "+ bon +" times";
+        }
+
+        function quickSort(){
+            swapcount = 0;
+            bon = 0;
+            // string conver to numbersArray
+            var numbersArray = document.getElementById("numbers").value.split(",").map(Number);
+            
+            // this is for test array
+            // var numbersArray =[1,9,4,5,16,7,33,485,5,8,6,8,44,8,6,9,0,-7];
+            // 1,9,4,5,16,7,33,485,5,8,6,8,44,8,6,9,0,-7
+
+            var l = numbersArray.length;
+            var startPosition = 0;
+            //Do quick Sort here
+            recursiveQuickSort(numbersArray, startPosition, l-1);
+ 
+            document.getElementById("output").innerHTML ="This is quick sort result:<br>" + numbersArray;
+            document.getElementById("swapcountoutput").innerHTML = "swap "+ swapcount +" times";
+            document.getElementById("comparecountoutput").innerHTML = "compare "+ bon +" times";
+        }
+
+        function recursiveQuickSort(array, start, pivot){
+            var o = start;
+
+            //for loop will scan from positon start to pivot(because we use last number as pivot so now pivot is the end)
+            for(var i = start; i<pivot; i++){
+                bon++;
+                // if positon i number is smaller than pivot swap to position o
+                if(array[i]<array[pivot]){
+
+                    if(i != o){
+                        swap(array, o, i);
+                    }
+                    
+                    // then position o go to next
+                    o++;
+                }
+            }
+
+            if(o != pivot){
+                //after scan then swap pivot to position o
+                swap(array, o, pivot);
+            }
+
+            //if (o-start) more than 1 which mean before it already do some swap.
+            // the number before "pivot" may haven't sort yet
+            if((o-start) > 1){
+                //so call this function again put same array but change the pivot
+                recursiveQuickSort(array, start, o-1);
+            }
+
+            //if (pivot - o) bigger than 1 which mean the greater part haven't sort
+            if((pivot - o) >1){
+                //so call this function again put same array but change the position start
+                recursiveQuickSort(array, o+1, pivot);
+            }
+        }
+
+        function insertionSort(){
+
+        }
+
+        function binarySearch(){
+
+
+        }
+
+        function swap(array, o, i){
+            //swap position o and position i
+            var oNumber = array[o];
+            array[o] = array[i];
+            array[i]=oNumber;
+            swapcount++;
         }
 
     </script>
