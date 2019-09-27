@@ -10,50 +10,94 @@
 <body>
     <div id="box">
         <h1>Sort</h1>
+        <div>Creat random number array</div>
+        <div>Please input array length: </div>
+        <input type="text" id="randomArrayLength">
+        <button onclick="creatRandomNumberArray()">Creat</button><br><br>
         <div>Insert numbers use "," to split EX:6,2,1,5,3,8,7,4</div>
         <textarea type="text" id="numbers" cols="40" rows="5" ></textarea>
         <br>
 
         <button onclick="mergeSort()">Merge Sort </button>
-        <button onclick="selectionSort()">Selection Sort </button>
         <button onclick="quickSort()">Quick Sort</button>
-        <!-- <button onclick="bubbleSort()">Bubble Sort </button> -->
+        
+        <button onclick="selectionSort()">Selection Sort </button>
+        <button onclick="bubbleSort()">Bubble Sort </button>
         <!-- <button onclick="fruitSortChange()"> Reverse/Sort </button> -->
         <div id="output"></div>
         <div id="swapcountoutput"></div>
         <div id="comparecountoutput"></div>
+        <div id="spendtimeoutput"></div>
     </div>
 
     <script>
         // this is for test array
         // 1,9,4,5,16,7,33,485,5,8,6,8,44,8,6,9,0,-7
-        // document.getElementById("numbers").value = "1,5,3,4,9,8";
+        // document.getElementById("numbers").value = "1,5,3,7,11,2";
         // quickSort();
         // selectionSort();
         // mergeSort();
+        // bubbleSort();
+
         var swapcount = 0;
         var bon=0;
 
-        function bubbleSort(){
-            var numbersarray = document.getElementById("numbers").value.split(",");
+        function creatRandomNumberArray(){
 
-            for(var i=0, l = numbersarray.length; i<=l; i++)
-            {
-
+            var randomArray = [];
+            var i = 0;
+            var randomArrayLength = document.getElementById("randomArrayLength").value
+            while(i<randomArrayLength){
+                randomArray.push(parseInt(Math.random()*randomArrayLength));
+                i++;
             }
+
+            document.getElementById("numbers").value = randomArray;
+        }
+
+        function bubbleSort(){
+            
+            var start = performance.now();
+            var numbersArray = document.getElementById("numbers").value.split(",").map(Number);
+            var l = numbersArray.length -1;
+            swapcount = 0;
+            bon=0;
+
+            for(var i=0; i<l; i++)
+            {
+                for(var j=0;j<l-i; j++)
+                {
+                    bon++;
+                    //compare j and next
+                    if(numbersArray[j]>numbersArray[j+1]){
+                        swap(numbersArray, j, j+1);
+                    }
+                }
+            }
+
+            var end = performance.now();
+
+            //output
+            document.getElementById("output").innerHTML ="This is bubble sort result:<br>" + numbersArray;
+            document.getElementById("swapcountoutput").innerHTML = "swap "+ swapcount +" times";
+            document.getElementById("comparecountoutput").innerHTML = "compare "+ bon +" times";
+            document.getElementById("spendtimeoutput").innerHTML ="spend time: " + (end - start) + " milliseconds";
         }
 
         function mergeSort(){
 
+            var start = performance.now();
             bon=0;
             swapcount = 0;
             // string conver to numbersArray
-            var numbersarray = document.getElementById("numbers").value.split(",").map(Number);
-            
-            document.getElementById("output").innerHTML ="This is merge sort result:<br>" + recursiveMergeSort(numbersarray);;
+            var numbersArray = document.getElementById("numbers").value.split(",").map(Number);
+
+            var end = performance.now();
+            //output
+            document.getElementById("output").innerHTML ="This is merge sort result:<br>" + recursiveMergeSort(numbersArray);
             document.getElementById("swapcountoutput").innerHTML = "";
             document.getElementById("comparecountoutput").innerHTML = "compare "+ bon +" times";
-
+            document.getElementById("spendtimeoutput").innerHTML ="spend time: " + (end - start) + " milliseconds";
         }
 
         function recursiveMergeSort(arrary){
@@ -90,7 +134,9 @@
             return mergedArray;
         }
 
+
         function selectionSort(){
+            var start = performance.now();
             bon=0;
             swapcount = 0;
             // string conver to numbersArray
@@ -123,12 +169,17 @@
                 }
             }
 
+            var end = performance.now();
+            //output
             document.getElementById("output").innerHTML ="This is selection sort result:<br>" + numbersArray;
             document.getElementById("swapcountoutput").innerHTML = "swap "+ swapcount +" times";
             document.getElementById("comparecountoutput").innerHTML = "compare "+ bon +" times";
+            document.getElementById("spendtimeoutput").innerHTML ="spend time: " + (end - start) + " milliseconds";
         }
 
+
         function quickSort(){
+            var start = performance.now();
             swapcount = 0;
             bon = 0;
             // string conver to numbersArray
@@ -138,10 +189,13 @@
             var startPosition = 0;
             //Do quick Sort here
             recursiveQuickSort(numbersArray, startPosition, l-1);
- 
+
+            var end = performance.now();
+            //output
             document.getElementById("output").innerHTML ="This is quick sort result:<br>" + numbersArray;
             document.getElementById("swapcountoutput").innerHTML = "swap "+ swapcount +" times";
             document.getElementById("comparecountoutput").innerHTML = "compare "+ bon +" times";
+            document.getElementById("spendtimeoutput").innerHTML ="spend time: " + (end - start) + " milliseconds";
         }
 
         function recursiveQuickSort(array, start, pivot){
@@ -181,14 +235,6 @@
             }
         }
 
-        function insertionSort(){
-
-        }
-
-        function binarySearch(){
-
-
-        }
 
         function swap(array, o, i){
             //swap position o and position i
@@ -198,6 +244,15 @@
             swapcount++;
         }
 
+        function insertionSort(){
+
+        }
+
+        function binarySearch(){
+
+
+        }
+        
     </script>
 </body>
 </html>
