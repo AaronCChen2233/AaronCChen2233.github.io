@@ -7,6 +7,11 @@
     <title>Sort</title>
     <link rel="stylesheet" href="../style.css">
 </head>
+<style>
+    #box{
+        width: auto;
+    }
+</style>
 
 <body>
     <div id="box">
@@ -15,7 +20,7 @@
         <div>Please input array length: </div>
         <input type="text" id="randomArrayLength">
         <button onclick="creatRandomNumberArray()">Creat</button><br><br>
-        <div>Insert numbers use "," to split EX:6,2,1,5,3,8,7,4</div>
+        <div>Insert numbers use "," to separate EX:6,2,1,5,3,8,7,4</div>
         <textarea type="text" id="numbers" cols="40" rows="5" ></textarea>
         <br>
 
@@ -25,6 +30,7 @@
         <button onclick="selectionSort()">Selection Sort </button>
         <button onclick="bubbleSort()">Bubble Sort </button>
         <button onclick="functionSort()">Use sort function </button>
+        <br><br>
         <!-- <button onclick="fruitSortChange()"> Reverse/Sort </button> -->
         <div id="output"></div>
         <div id="swapcountoutput"></div>
@@ -65,7 +71,7 @@
             var end = performance.now();
 
             //output
-            document.getElementById("output").innerHTML ="This is bubble sort result:<br>" + numbersArray;
+            document.getElementById("output").innerHTML ="This is function sort result:<br>" + numbersArray;
             document.getElementById("spendtimeoutput").innerHTML ="spend time: " + (end - start) + " milliseconds";
             document.getElementById("swapcountoutput").innerHTML = "";
             document.getElementById("comparecountoutput").innerHTML = "";
@@ -137,6 +143,7 @@
             while(separateArray1.length != 0 && separateArray2.length != 0){
                 
                 bon++;
+                //compare
                 if(separateArray1[0] < separateArray2[0]){
                     mergedArray.push(separateArray1[0]);
                     separateArray1.shift();
@@ -177,7 +184,7 @@
                 for(var j = i+1; j<l; j++)
                 {
                     bon++;
-                    //here will find the least number
+                    //here will compare and find the least number
                     if(numbersArray[j] < theLeastNumber){
                         theLeastNumber = numbersArray[j];
 
@@ -227,7 +234,7 @@
             //for loop will scan from positon start to pivot(because we use last number as pivot so now pivot is the end)
             for(var i = start; i<pivot; i++){
                 bon++;
-                // if positon i number is smaller than pivot swap to position o
+                //compare positon i number is smaller than pivot or not if so swap to position o
                 if(array[i] < array[pivot]){
 
                     if(i != o){
