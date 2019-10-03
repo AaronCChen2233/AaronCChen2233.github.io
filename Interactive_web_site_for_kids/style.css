@@ -1,0 +1,236 @@
+/* main page style */
+html {
+    height: 100%;
+    margin: 0;
+    background-color: #7cd8ff;
+    scroll-behavior: smooth;
+}
+
+#mainbody {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width: 90%;
+    margin: 0 auto;
+    height: 100%;
+}
+
+#title{
+    height: 130px;
+    background-image: url('image/cat-box.png');
+    background-size: 10%;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+#top {
+    padding: 40px;
+    
+}
+
+.input{
+    height: 100px;
+    text-align: center;
+    font-size: 2em;
+}
+
+input {
+    font-size: 1em;
+}
+
+#clckMe {
+    font-size: 0.5em;
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 20px 16px;
+}
+
+#clckMe:hover{
+    background-color: rgb(252, 255, 49); 
+    color: black;
+}
+
+#output {
+    height: 230px;
+    /* width: 90%; */
+    padding-top: 70px;
+    vertical-align: middle;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+}
+
+#game1 {
+    width: 90%;
+    margin: 20px auto;
+}
+
+ul {
+    width: 90%;
+    margin: 60px auto;
+}
+
+li {
+    list-style: none;
+    display: inline-block;
+    border: 3px solid black;
+    padding: 30px 60px;
+}
+
+.game2{
+    margin: 0 0.2em;
+    border: 3px solid red;
+    background-color: deeppink;
+    font-size: 3em;
+    color: yellow;
+}
+
+.game3{
+    margin: 0 0.2em;
+    border: 3px solid white;
+    background-color: #FB8080;
+    font-size: 3em;
+    color: white;
+}
+
+.game4{
+    margin: 0 0.2em;
+    border: 3px solid rgb(255, 255, 0);
+    background-color: rgb(255, 255, 159);
+    font-size: 3em;
+    color:rgb(255, 86, 86);
+}
+
+.game2:hover{
+    background-color: rgb(208, 219, 255); 
+    color: black;
+}
+
+.game3:hover{
+    background-color:rgb(208, 219, 255); 
+    color: black;
+}
+
+.game4:hover{
+    background-color:rgb(208, 219, 255); 
+    color: black;
+}
+
+#toOtherGames{
+    text-align: center;
+    display: none;
+}
+
+#game2div,#game3div,#game4div{
+    display: none;
+}
+
+#goTopBtn {
+    display: none;
+    position: fixed;
+    border-radius: 4px;
+    bottom: 40px;
+    right: 150px;
+    background-color: #7cd8ff;
+    font-size: 4em;
+}
+
+#goTopBtn:hover {
+    background-color: rgb(208, 219, 255); 
+}
+
+/* game2 style */
+.PrimeNumber{
+    height: 700px;
+    /* height: 100%; */
+    width: 90%;
+    background-color: deeppink;
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: -webkit-xxx-large;
+    padding: 20px;
+    border: 5px solid red;
+    margin-bottom: 20px;
+}
+
+#check{
+    width: 300px;
+    height: 50px;
+    font-size: 25px;
+    background-color:  rgb(255, 255, 255);
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#textForm{
+    width: 300px;
+    height: 50px;
+    font-size: 25px;
+}
+#subtitle{
+    margin-top: 90px;
+    font-size: 1.5em;
+    color: yellow;
+}
+
+/*game3style*/
+.effect{
+    animation:blink 1s infinite;
+}
+
+#calculationBtn{
+    background-color:yellow;
+    font-size: 32px;
+}
+
+#calculationBtn:hover{
+    background-color:orange;
+}
+
+input[type="text"] {
+    font-size:30px;
+}
+#game3div{
+    width: 90%;
+    height: 90%;
+    margin: 0 auto;
+    border: 5px solid white;
+    margin-bottom: 30px;
+    background-color: rgb(244, 120, 120);
+    padding: 20px;
+}
+
+
+.pic img{transform:scale(1,1);transition: all 1s ease-out;}
+.pic img:hover{transform:scale(4,4);}
+
+/*game4style*/
+#numberBox button{
+    margin: 20px;
+    font-size: 1em;
+    background-color:  rgb(228, 228, 175);
+    padding: 0.3em 0.5em;
+}
+
+#playAgain{
+    margin: 20px;
+    font-size: 1em;
+    background-color:  rgb(228, 228, 175);
+    padding: 0.2em
+}
+
+#game4div{
+    /* height: 650px; */
+    width: 90%;
+    background-color: rgb(255, 255, 159);
+    margin: 0 auto;
+    margin-bottom: 30px;
+    text-align: center;
+    color: rgb(255, 86, 86);
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: -webkit-xxx-large;
+    padding: 20px;
+    border: 5px solid rgb(255, 255, 0);
+}

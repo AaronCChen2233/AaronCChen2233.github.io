@@ -16,10 +16,10 @@
 <body>
     <div id="box">
         <h1>Sort</h1>
-        <div>Creat random number array</div>
+        <div>Create random number array</div>
         <div>Please input array length: </div>
         <input type="text" id="randomArrayLength">
-        <button onclick="creatRandomNumberArray()">Creat</button><br><br>
+        <button onclick="createRandomNumberArray()">Create</button><br><br>
         <div>Insert numbers use "," to separate EX:6,2,1,5,3,8,7,4</div>
         <textarea type="text" id="numbers" cols="40" rows="5" ></textarea>
         <br>
@@ -50,7 +50,7 @@
         var swapcount = 0;
         var bon=0;
 
-        function creatRandomNumberArray(){
+        function createRandomNumberArray(){
 
             var randomArray = [];
             var i = 0;
@@ -81,7 +81,7 @@
             var numbersArray = document.getElementById("numbers").value.split(",").map(Number);
 
             swapcount = 0;
-            bon=0;
+            bon = 0;
             var start = performance.now();
 
             var l = numbersArray.length -1;
