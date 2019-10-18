@@ -4,42 +4,43 @@
         // with a new page that prints
         // Hello &lt;the name that user input&gt;, Nice work! Let’s start!
         // ==============================================================================================================
-        
-        function unfunction(){
-            document.querySelector("#name").addEventListener("invalid", function(event) {
-            event.preventDefault();
-        }, false);
-
+        function clickEnter(event){
+            if (event.keyCode === 13) {
+                var c = document.activeElement;
+                debugger;
+                switch(c.id){ 
+                    case "name":
+                            greeting();
+                            break;
+                    case "textForm":
+                            check();
+                            break;
+                    case "input":
+                            calculation();
+                            break;
+                    default:
+                }
+                
+            }
         }
 
         function greeting(){
             var name = document.getElementById( "name" ).value;
             var outputStyle = document.getElementById('output');
             if(name == ""){
-            document.getElementById("outputName").innerHTML="Ooops. Please type your name." + "<br>";
-            document.getElementById("toOtherGames").style.display = "none";
-
-            // outputStyle.style.backgroundImage = 'none';
-
-            outputStyle.style.backgroundImage = 'url("image/ghost.png")';
-            outputStyle.style.backgroundRepeat = 'no-repeat';
-            outputStyle.style.backgroundSize = '10%';
-            outputStyle.style.backgroundPosition = 'left';
-            topFunction();
-            
+                document.getElementById("outputName").innerHTML="Ooops. Please type your name." + "<br>";
+                document.getElementById("toOtherGames").style.display = "none";
+                outputStyle.style.backgroundImage = 'url("image/ghost.png")';
+                outputStyle.style.backgroundRepeat = 'no-repeat';
+                outputStyle.style.backgroundSize = '10%';
+                outputStyle.style.backgroundPosition = 'left';
             }else{
-            document.getElementById("outputName").innerHTML="Hi " + name + "!" + "<br>" + "Nice to meet you. Let’s start😁" + "<br>";
-            
-            // outputStyle.style.backgroundImage = 'url("image/cloud.png")';
-            // outputStyle.style.backgroundRepeat = 'no-repeat';
-            // outputStyle.style.backgroundSize = '100%';
-
-            outputStyle.style.backgroundImage = 'url("image/cloud_without_back.png")';
-            outputStyle.style.backgroundRepeat = 'no-repeat';
-            outputStyle.style.backgroundSize = '50%';
-            outputStyle.style.backgroundPosition = 'center';
-
-            document.getElementById("toOtherGames").style.display = "block";
+                document.getElementById("outputName").innerHTML="Hi " + name + "!" + "<br>" + "Nice to meet you. Let’s start😁" + "<br>";
+                outputStyle.style.backgroundImage = 'url("image/cloud_without_back.png")';
+                outputStyle.style.backgroundRepeat = 'no-repeat';
+                outputStyle.style.backgroundSize = '50%';
+                outputStyle.style.backgroundPosition = 'center';
+                document.getElementById("toOtherGames").style.display = "block";
             }
         }
 
@@ -57,13 +58,15 @@
         function topFunction() {
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
+            resetAllGame();
+            //here will scroll to top then hide game;
+            nIntervId = window.setInterval(hideAllGame, 500);
+        }
 
+        function resetAllGame(){
             resetPrimeNumber();
             resetCalculation();
             resetLottery();
-            //here will scroll to top then hide game;
-            nIntervId = window.setInterval(hideAllGame, 500);
-
         }
 
         function hideAllGame(){
@@ -80,7 +83,7 @@
             var gameClassName = document.activeElement.id;
 
             hideAllGame();
-
+            resetAllGame();
             switch(gameClassName){
                 case "game2":
                     document.getElementById("game2div").style.display = "block";
@@ -136,6 +139,7 @@
                 document.getElementById("primeOutput").innerHTML = (textForm + ' IS NOT A PRIME NUMBER😌😌😌');
             }
         }
+
         function resetPrimeNumber(){
             document.getElementById("textForm").value="";
             document.getElementById("primeOutput").innerHTML ="";
@@ -193,6 +197,7 @@
         }
 
         function resetCalculation(){
+            createCalculationQuection();
             document.getElementById("input").value = "";
             document.getElementById("demo").innerHTML ="";
         }
@@ -255,13 +260,6 @@
                         if(correctCount == 2){
                             document.getElementById("result").innerHTML = "Congratulations! you won $1,000 prize. The Lottery numbers are " + randomNumbersArray;
                         }
-
-                        // if(randomNumbersArray[i] == chosenNumberArray[i]){
-                            // correctCount++;
-                        // }
-                        // else{
-                        //     correctButOrderCount++;
-                        // }
                     }
                     else{
                         continue;
