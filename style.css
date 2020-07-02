@@ -1,0 +1,29 @@
+a{
+    font-family:Microsoft JhengHei;
+    font-size: 28px;
+    line-height: 50px;
+}
+
+h1{
+    font-family:Microsoft JhengHei;
+}
+
+h3{
+    font-size: 45px;
+    font-family:Microsoft JhengHei;
+    line-height: 10px;
+}
+
+div{
+    font-family:Microsoft JhengHei;
+}
+
+#box{
+    width: 500px;
+    background-color: rgb(157, 204, 248);
+    border: 1px solid rgb(0, 56, 109);
+    /* text-align: center; */
+    border-radius: 5px;
+    /* margin: 0 auto; */
+    padding: 10px;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="output"></div>
+
+    <script>
+        var monthNumber=prompt("Tell me a month number from 1 to 12");
+        var result = "";
+        var checked = false;
+        while(!checked)
+        {
+            checked = true;
+            switch (monthNumber){
+                case "1":
+                    result = "January";
+                break;
+                case "2":
+                    result = "February";
+                break;
+                case "3":
+                    result = "March";
+                break;
+                case "4":
+                    result = "April";
+                break;
+                case "5":
+                    result = "May";
+                break;
+                case "6":
+                    result = "June";
+                break;
+                case "7":
+                    result = "July";
+                break;
+                case "8":
+                    result = "August";
+                break;
+                case "9":
+                    result = "September";
+                break;
+                case "10":
+                    result = "October";
+                break;
+                case "11":
+                    result = "November";
+                break;
+                case "12":
+                    result = "December";
+                break;
+                default:
+                    checked = false;
+                    monthNumber=prompt("Tell me a month number from 1 to 12");
+            }
+        }
+        document.getElementById('output').innerHTML=result;
+
+    </script>
+
+    
+</body>
+</html>

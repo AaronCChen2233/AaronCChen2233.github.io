@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<style>
+    #box{
+            width: auto;
+    }
+</style>
+
+<body>
+    <div id = "box">
+        <div id="output"></div>
+        <button id="show" onclick="showFlowchart()">Show Flowcharts</button>
+        <img id="flowchart" src="">
+    </div>
+    
+    <script>
+        //start
+
+        //input
+        var numberArray = [7, 5, 3, 2, 4];
+        var i =0;
+        var answerString="";
+
+        //decision
+        for(;i<numberArray.length;){
+            //decision
+            if(4%numberArray[i]==0){
+                //process
+                answerString += numberArray[i] +" ";
+            }
+
+            //process
+            i++;
+        }
+
+        //output
+        document.getElementById("output").innerHTML="Answer is:" + answerString;
+
+        //end
+
+        function showFlowchart(){
+                document.getElementById("flowchart").src="Flowcharts/FactorOf4.png";  
+            }
+    </script>
+</body>
+</html>

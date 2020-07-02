@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    textarea{
+        width: 400px;
+        background-color:  rgb(213, 235, 255);
+    }
+    #box{
+        width: 600px;
+        height: 280px;
+    }
+</style>
+<body>
+        <div id="box">
+            <h1>Fruits(String) Sort</h1>
+            <div>Insert fruits use "," to split EX:Durian,Figs,Blackberries,Elderberries,Apricots,Cherry,Grapefruit</div>
+            <textarea type="text" id="fruits" cols="40" rows="5" ></textarea>
+            <br>
+            <button onclick="fruitsSort()"> Sort </button>
+            <button onclick="fruitsReverse()"> Reverse </button>
+            <button onclick="fruitSortChange()"> Reverse/Sort </button>
+            <div id="output"></div>
+        </div>
+        <script>
+            var isSorted = false;
+
+            function fruitsSort(){
+                var fruitsarray = document.getElementById("fruits").value.split(",");
+                fruitsarray = fruitsarray.sort();
+                document.getElementById("output").innerHTML = fruitsarray;
+                isSorted = true;
+            }
+
+            function fruitsReverse(){
+                var fruitsarray = document.getElementById("fruits").value.split(",");
+                fruitsarray = fruitsarray.sort().reverse();
+                document.getElementById("output").innerHTML = fruitsarray;
+                isSorted = false;
+            }
+
+            function fruitSortChange(){
+                if(isSorted){
+                    fruitsReverse();
+                }
+                else{
+                    fruitsSort();
+                }
+            }
+            
+        </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button type="button" onclick="TurnOnOff()">
+        Click me turn on/off the light
+    </button>
+
+    <script>
+        var i = true;
+        function TurnOnOff() {
+            i = !i;
+            if (i)
+            {
+                document.getElementById('imgoutput').src='image/pic_bulboff.gif';
+            }
+            else
+            {
+                document.getElementById('imgoutput').src='image/pic_bulbon.gif';
+            }
+        }
+    </script>
+
+    <img id="imgoutput" src="image/pic_bulboff.gif" style="width: 100px">
+</body>
+</html>
