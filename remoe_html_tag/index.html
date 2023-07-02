@@ -1,0 +1,44 @@
+
+<!doctype html>
+<html>
+<head>
+    <title>This is the title of the webpage!</title>
+</head>
+<body>
+    <textarea id="inputText" name="story" onchange="inputChange();" onclick="this.select()" style="width: 1500px; height: 450px;"></textarea>
+    <main>
+        <div id="htmlStripper" style="display:none;">Tags</div>
+        <div id="show"></div>
+    </main>
+</body>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+    function inputChange(){
+      $('#show').html(removeTags($('#inputText').val()));
+    }
+
+    function removeTags(str) {
+    if ((str===null) || (str===''))
+        return false;
+    else
+        str = str.toString();
+        str = str.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+        str = str.replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '');
+        str = str.replace(/<\/scr/gi, ' ');
+        str = str.replace(/<script/gi, ' ');
+
+        str = str.replace(/\t/gm," ");
+
+	      document.getElementById("htmlStripper").innerHTML = str;
+	      str = document.getElementById("htmlStripper").innerText;
+
+	      str = str.replace(/[\r\n]+/gm, '\n\n');
+        navigator.clipboard.writeText(str);
+    return str;
+  }
+
+
+</script>
+</html>
+
