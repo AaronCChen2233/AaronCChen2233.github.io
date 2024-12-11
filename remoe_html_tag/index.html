@@ -25,6 +25,7 @@
         str = str.toString();
         str = str.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
         str = str.replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '');
+	str = str.replace('.', '');
         str = str.replace(/<\/scr/gi, ' ');
         str = str.replace(/<script/gi, ' ');
 
