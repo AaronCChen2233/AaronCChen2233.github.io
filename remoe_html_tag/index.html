@@ -26,6 +26,7 @@
         str = str.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
         str = str.replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '');
 	str = str.replace(/\./gi, '點');
+	str = str.replace(/\&/gi, 'and');
 	str = str.replace(/\%/gi, '趴');
 	str = str.replace(/\巿/gi, '市');
         str = str.replace(/<\/scr/gi, ' ');
