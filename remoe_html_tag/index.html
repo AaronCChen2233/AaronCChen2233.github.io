@@ -31,8 +31,7 @@
 	str = str.replace(/\巿/gi, '市');
         str = str.replace(/<\/scr/gi, ' ');
         str = str.replace(/<script/gi, ' ');
-	str = str.replace(/[\p{Emoji}]/gu, '');
-
+	str = str.replace(/[\p{Extended_Pictographic}\uFE0F]/gu, '');
 
         str = str.replace(/\t/gm," ");
 
