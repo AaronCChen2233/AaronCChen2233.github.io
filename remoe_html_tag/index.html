@@ -6,6 +6,7 @@
 </head>
 <body>
     <textarea id="inputText" name="story" onchange="inputChange();" onclick="this.select()" style="width: 1500px; height: 450px;"></textarea>
+    <button onclick="pasteFromClipboard()">Paste</button>
     <main>
         <div id="htmlStripper" style="display:none;">Tags</div>
         <div id="show"></div>
@@ -18,6 +19,17 @@
       $('#show').html(removeTags($('#inputText').val()));
     }
 
+    async function pasteFromClipboard() {
+      try {
+        const text = await navigator.clipboard.readText(); // 從剪貼簿讀取文字
+        document.getElementById("inputText").value = text;
+      } catch (err) {
+        alert("無法貼上剪貼簿內容，請確認已授權此網站使用剪貼簿權限。");
+        console.error("貼上錯誤：", err);
+      }
+      inputChange()
+    }
+
     function removeTags(str) {
     if ((str===null) || (str===''))
         return false;
@@ -25,13 +37,13 @@
         str = str.toString();
         str = str.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
         str = str.replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '');
-	str = str.replace(/\./gi, '點');
-	str = str.replace(/\&/gi, 'and');
-	str = str.replace(/\%/gi, '趴');
-	str = str.replace(/\巿/gi, '市');
+    	str = str.replace(/\./gi, '點');
+	    str = str.replace(/\&/gi, 'and');
+	    str = str.replace(/\%/gi, '趴');
+	    str = str.replace(/\巿/gi, '市');
         str = str.replace(/<\/scr/gi, ' ');
         str = str.replace(/<script/gi, ' ');
-	str = str.replace(/[\p{Extended_Pictographic}\uFE0F]/gu, '');
+	    str = str.replace(/[\p{Extended_Pictographic}\uFE0F]/gu, '');
 
         str = str.replace(/\t/gm," ");
 
