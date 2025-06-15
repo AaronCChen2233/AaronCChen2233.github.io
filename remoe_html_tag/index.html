@@ -7,6 +7,7 @@
 <body>
     <textarea id="inputText" name="story" onchange="inputChange();" onclick="this.select()" style="width: 1500px; height: 450px;"></textarea>
     <button onclick="pasteFromClipboard()">Paste</button>
+    <input type="checkbox" id="myToggle">auto</input>
     <main>
         <div id="htmlStripper" style="display:none;">Tags</div>
         <div id="show"></div>
@@ -15,16 +16,31 @@
 
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
+
+
+    $(document).ready(function() {
+      // 當頁面載入完成時，將 textarea 的內容轉換並顯示
+        inputChange();
+    });
     function inputChange(){
       $('#show').html(removeTags($('#inputText').val()));
     }
+
+    document.addEventListener("visibilitychange", function () {
+      const toggle = document.getElementById("myToggle");
+      const isOn = toggle.checked;
+      if (isOn) {
+        setTimeout(() => {
+         pasteFromClipboard()
+        }, 200);
+      }
+    });
 
     async function pasteFromClipboard() {
       try {
         const text = await navigator.clipboard.readText(); // 從剪貼簿讀取文字
         document.getElementById("inputText").value = text;
       } catch (err) {
-        alert("無法貼上剪貼簿內容，請確認已授權此網站使用剪貼簿權限。");
         console.error("貼上錯誤：", err);
       }
       inputChange()
