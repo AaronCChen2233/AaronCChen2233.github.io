@@ -146,8 +146,7 @@
         line = line.replace(/\-\-steps\s+\d+/g, '--steps ' + steps);
         line = line.replace(/\-\-width\s+\d+/g, '--width ' + width);
         line = line.replace(/\-\-height\s+\d+/g, '--height ' + height);
-        line = line.replace(/\-\-sampler_name\s+"[^"]*"/g, '--sampler_name "' + sampler + '"');
-        line = line.replace(/\-\-sampler_name\s+\S+/g, '--sampler_name "' + sampler + '"');
+        line = line.replace(/\-\-sampler_name\s+(?:"[^"]*"|\S+)/g, '--sampler_name "' + sampler + '"');
         return line;
       }
 
@@ -179,3 +178,4 @@
   </script>
 </body>
 </html>
+
