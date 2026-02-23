@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stable Diffusion Script 產生器</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; max-width: 900px; margin: 0 auto; padding: 1rem; }
+    label { display: block; margin-top: 0.5rem; font-weight: 600; }
+    textarea { width: 100%; min-height: 80px; font-family: monospace; font-size: 13px; }
+    input[type="number"] { width: 6em; }
+    .params { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0; align-items: center; }
+    .params label { margin-top: 0; }
+    .params .field { display: flex; align-items: center; gap: 0.25rem; }
+    #placeholder-inputs { margin: 1rem 0; }
+    #placeholder-inputs .ph { margin-bottom: 1rem; }
+    #placeholder-inputs .ph label { margin-bottom: 0.25rem; }
+    #placeholder-inputs .ph textarea { min-height: 60px; }
+    #result { min-height: 120px; }
+    button { padding: 0.5rem 1rem; cursor: pointer; margin-top: 0.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Stable Diffusion Script 產生器</h1>
+
+  <label for="template">Script Template</label>
+  <textarea id="template" rows="6"></textarea>
+
+  <section id="placeholder-inputs">
+    <!-- 動態產生 Placeholder 0 ~ N 的 textarea -->
+  </section>
+
+  <section class="params">
+    <div class="field">
+      <label for="steps">steps</label>
+      <input type="number" id="steps" value="20" min="1">
+    </div>
+    <div class="field">
+      <label for="width">width</label>
+      <input type="number" id="width" value="768" min="1">
+    </div>
+    <div class="field">
+      <label for="height">height</label>
+      <input type="number" id="height" value="768" min="1">
+    </div>
+    <div class="field">
+      <label for="sampler_name">sampler_name</label>
+      <select id="sampler_name">
+        <option value="Euler a" selected>Euler a</option>
+        <option value="Euler">Euler</option>
+        <option value="LMS">LMS</option>
+        <option value="Heun">Heun</option>
+        <option value="DPM2">DPM2</option>
+        <option value="DPM2 a">DPM2 a</option>
+        <option value="DPM++ 2S a">DPM++ 2S a</option>
+        <option value="DPM++ 2M">DPM++ 2M</option>
+        <option value="DPM fast">DPM fast</option>
+        <option value="DPM adaptive">DPM adaptive</option>
+        <option value="LMS Karras">LMS Karras</option>
+        <option value="DPM2 Karras">DPM2 Karras</option>
+        <option value="DPM2 a Karras">DPM2 a Karras</option>
+        <option value="DPM++ 2S a Karras">DPM++ 2S a Karras</option>
+        <option value="DPM++ 2M Karras">DPM++ 2M Karras</option>
+        <option value="DDIM">DDIM</option>
+        <option value="PLMS">PLMS</option>
+        <option value="UniPC">UniPC</option>
+        <option value="DPM++ SDE">DPM++ SDE</option>
+        <option value="DPM++ SDE Karras">DPM++ SDE Karras</option>
+      </select>
+    </div>
+  </section>
+
+  <button id="generate">產生腳本</button>
+
+  <label for="result">Result</label>
+  <textarea id="result" readonly rows="12" placeholder="按「產生腳本」後顯示結果，每條指令以兩個換行分隔"></textarea>
+
+  <script>
+    (function () {
+      var templateEl = document.getElementById('template');
+      var placeholderContainer = document.getElementById('placeholder-inputs');
+      var stepsEl = document.getElementById('steps');
+      var widthEl = document.getElementById('width');
+      var heightEl = document.getElementById('height');
+      var samplerEl = document.getElementById('sampler_name');
+      var generateBtn = document.getElementById('generate');
+      var resultEl = document.getElementById('result');
+
+      function getMaxPlaceholderIndex(text) {
+        var regex = /\{(\d+)\}/g;
+        var match;
+        var max = -1;
+        while ((match = regex.exec(text)) !== null) {
+          var n = parseInt(match[1], 10);
+          if (n > max) max = n;
+        }
+        return max;
+      }
+
+      function renderPlaceholderInputs() {
+        var text = templateEl.value;
+        var maxN = getMaxPlaceholderIndex(text);
+        placeholderContainer.innerHTML = '';
+        if (maxN < 0) return;
+        for (var i = 0; i <= maxN; i++) {
+          var wrap = document.createElement('div');
+          wrap.className = 'ph';
+          var label = document.createElement('label');
+          label.textContent = 'Placeholder ' + i + '（一行一項，多行會做笛卡爾積）';
+          var ta = document.createElement('textarea');
+          ta.id = 'ph-' + i;
+          ta.setAttribute('data-index', String(i));
+          wrap.appendChild(label);
+          wrap.appendChild(ta);
+          placeholderContainer.appendChild(wrap);
+        }
+      }
+
+      function cartesianProduct(arrays) {
+        if (arrays.length === 0) return [[]];
+        var rest = cartesianProduct(arrays.slice(1));
+        return arrays[0].reduce(function (acc, head) {
+          return acc.concat(rest.map(function (r) { return [head].concat(r); }));
+        }, []);
+      }
+
+      function getPlaceholderValues() {
+        var maxN = getMaxPlaceholderIndex(templateEl.value);
+        if (maxN < 0) return [[]];
+        var values = [];
+        for (var i = 0; i <= maxN; i++) {
+          var el = document.getElementById('ph-' + i);
+          var raw = el ? el.value : '';
+          var items = raw.split(/\r?\n/).map(function (s) { return s.trim(); }).filter(Boolean);
+          values.push(items.length ? items : ['']);
+        }
+        return values;
+      }
+
+      function applyParams(line) {
+        var steps = stepsEl.value;
+        var width = widthEl.value;
+        var height = heightEl.value;
+        var sampler = samplerEl.value;
+        line = line.replace(/\-\-steps\s+\d+/g, '--steps ' + steps);
+        line = line.replace(/\-\-width\s+\d+/g, '--width ' + width);
+        line = line.replace(/\-\-height\s+\d+/g, '--height ' + height);
+        line = line.replace(/\-\-sampler_name\s+"[^"]*"/g, '--sampler_name "' + sampler + '"');
+        line = line.replace(/\-\-sampler_name\s+\S+/g, '--sampler_name "' + sampler + '"');
+        return line;
+      }
+
+      function generate() {
+        var template = templateEl.value;
+        var maxN = getMaxPlaceholderIndex(template);
+        var valueArrays = getPlaceholderValues();
+        var combinations = cartesianProduct(valueArrays);
+        var lines = [];
+        for (var c = 0; c < combinations.length; c++) {
+          var combo = combinations[c];
+          var line = template;
+          for (var i = 0; i <= maxN; i++) {
+            var placeholder = '{' + i + '}';
+            line = line.split(placeholder).join(combo[i] || '');
+          }
+          line = applyParams(line);
+          lines.push(line);
+        }
+        resultEl.value = lines.join('\n\n');
+      }
+
+      templateEl.addEventListener('input', renderPlaceholderInputs);
+      templateEl.addEventListener('change', renderPlaceholderInputs);
+      generateBtn.addEventListener('click', generate);
+
+      renderPlaceholderInputs();
+    })();
+  </script>
+</body>
+</html>
